@@ -14,7 +14,7 @@ timezone:
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://localhost:4000
-root: /
+root: /blog/
 permalink: :title/
 permalink_defaults:
 
@@ -78,7 +78,9 @@ theme: book
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://github.com/AngelName/blog.git
+  branch: gh-pages #published
 
 markdown:
   render:
