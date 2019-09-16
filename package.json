@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "hexo server",
-    "gp":"git push orign"
+    "gp":"git push && git push second master"
   },
   "dependencies": {
     "hexo": "^3.9.0",
