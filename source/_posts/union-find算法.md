@@ -147,9 +147,67 @@ function testQuickFindUF(){
 
 ![quick-find轨迹](/blog/images/quick-find-guiji.png)
 
+分析：
+: 这种算法 find 的速度很快，只访问了一次数组
+但是在union 操作的时候会遍历一遍数组，根据成本模型，我们看这个循环
+循环中 if 中的条件，访问了一次数组，后面的赋值语句访问了一边数组
+如果 if 中的条件都不成立也就是最好的情况下我们需要访问 2 + N + 1 次数组
+如果 if 中的条件成立了就需要访问 2 + 2N  - 1 次数组了
+
+<div class="note">
+  最后加的一是触点本身的时候，减的一也是
+</div>
+
 #### quick-union
 
 思想:
 : 添加一种 **连接** 关系,每个触点都连接它上一个触点或者他本身
 `id[0] = 0` 的意思就是 触点 0 连接自己
 `id[0] = 1` 的意思就是 触点 0 连接 1 这个触点
+当实现 find 方法的时候，需要访问当前 触点 的上级触点，这样逐级向上查询，最后到达所在的根节点
+需要用 union 来维护这种关系，在union中我们找到两个触点的跟触点，然后把一个根触点放到另一个根触点分量中
+`id[p] = q` 把 触点 p 的根触点 赋值为 q
+```js quick union
+class QuickUnionUF extends UF{
+  constructor(...args){
+    super(args)
+  }
+  
+  find(p){
+    // 寻找触点的根节点
+    while(p!==this.id[p])p=this.id[p];
+    return p
+  }
+  union(p,q){
+    //获取p 和q 所在的连通分量
+    const pRoot = this.find(p)
+    const qRoot = this.find(q)
+
+    // 如果p和q 在一个分量不做操作
+    if(pRoot === qRoot)return;
+
+    //将 p 的根节点挂到 q 的分量上
+    this.id[pRoot] = this.id[qRoot]
+    this.count--;
+  }
+}
+
+function testQuickUnionUF(){
+  const N = 10;
+  const paramStr = `4 3 3 8 6 5 9 4 2 1 8 9 5 0 7 2 6 1 1 0 6 7`;
+  const param = paramStr.split(" ").map(item=>{return parseInt(item)});
+  const uf = new QuickUnionUF(N);
+  for(let i = 0;i<param.length-1;i+=2){
+    const p = param[i];
+    const q = param[i+1];
+    uf.union(p,q)
+    console.log(p + " " +q+" "+uf.id);
+  }
+
+  console.log(uf.count+" components")
+}
+testQuickUnionUF();
+```
+
+分析：
+： 
