@@ -139,6 +139,7 @@ class WeightQuickUnionUF extends UF{
     //按照权重去把小树挂在大树上
     if(this.sz[pRoot]<this.sz[qRoot]){
       this.id[pRoot] = this.id[qRoot]
+      // 更新 q 根节点的权重
       this.sz[qRoot]+=this.sz[pRoot]
     }else{
       this.id[qRoot] = this.id[pRoot]

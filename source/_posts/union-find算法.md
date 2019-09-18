@@ -210,4 +210,87 @@ testQuickUnionUF();
 ```
 
 分析：
-： 
+: quick-union 构造了一个森林,每个 **分量** 代表一个树
+：相比与 quick-find 来说 quick-union 仿佛快了,因为 quick-union 对于 find 的操作,访问数组的次数取决于树的深度,当树的深度越浅的时候访问树的次数越少,树的深度的大小取决与输入,当输入的时候一直往一个触点上延伸触点,得到的就是一个链,换句话来说就是,每次都在大树上挂小树的,所以在最坏的情况下会访问次数能达到 平方级别 
+
+思考:
+: quick-union 的速度和树的深度有关,如果有一种方法可以减少树的深度,那么是不是就快了呢? 是的. 下面学习关于加权的quick-union
+
+#### quick-union
+
+思路:
+: 根据上文知道树的深度决定了 quick-union 的速度,所以可以添加一个数组 sz ,和 id 一样数组的索引代表这触点.
+数组的内容代表当前触点所在树的深度.在 union 操作的时候,把权重大的树挂载到权重小的树上面,这样树的深度就会减少很多
+
+```js weight-quick-union
+
+class WeightQuickUnionUF extends UF{
+  constructor(...args){
+    super(args)
+    const [N] = args;
+    this.sz = Array(N).fill(1);
+    console.log(this.sz,args)
+  }
+  
+  find(p){
+    // 寻找触点的根节点
+    while(p!==this.id[p])p=this.id[p];
+    return p
+  }
+  union(p,q){
+    //获取p 和q 所在的连通分量
+    const pRoot = this.find(p)
+    const qRoot = this.find(q)
+
+    // 如果p和q 在一个分量不做操作
+    if(pRoot === qRoot)return;
+
+    //按照权重去把小树挂在大树上
+    if(this.sz[pRoot]<this.sz[qRoot]){
+      this.id[pRoot] = this.id[qRoot]
+      // 更新 q 根节点的权重
+      this.sz[qRoot]+=this.sz[pRoot]
+    }else{
+      this.id[qRoot] = this.id[pRoot]
+      this.sz[pRoot]+=this.sz[qRoot] 
+    }
+    this.count--;
+  }
+}
+
+function testWeightQuickUnionUF(){
+  const N = 10;
+  const paramStr = `4 3 3 8 6 5 9 4 2 1 8 9 5 0 7 2 6 1 1 0 6 7`;
+  const param = paramStr.split(" ").map(item=>{return parseInt(item)});
+  const uf = new WeightQuickUnionUF(N);
+  for(let i = 0;i<param.length-1;i+=2){
+    const p = param[i];
+    const q = param[i+1];
+    uf.union(p,q)
+    console.log(p + " " +q+" "+uf.id,uf.sz);
+  }
+
+  console.log(uf.count+" components")
+}
+testWeightQuickUnionUF()
+```
+
+命题:
+: 对于 N 个触点,加权 quick-union 算法构造的森林中的任意节点的深度最多为 lgN
+
+推论:
+: 对于加权 quick-union 算法和 N 个触点,在最坏的情况下 find()、connected()、和union() 的成本的增长数量级为 logN
+
+分析:
+: 加权算法处理 N 个触点和 M 条连接时最多访问数组 cMlgN 次,其中 c 为常数.
+
+
+ #### 最优算法-路径压缩算法
+
+ 书中说到一种简单的路径压缩算法.属于最优算法的一种.
+ 
+ 思路:
+ : 理想情况下,我们希望每个节点都直接连接到它的根节点上,这样书的深度就最小,但是我们又不想想quick-find那样大量修改链接.
+ : 接近这种理想状态的方式很简单,在检查节点的时候我们将它们直接连到根节点.
+ : 要实现路径压缩算法,只需要为 find() 添加一个循环,将路径上遇到的所有节点都直接链接到根节点.
+ : 这样我们就能得到一个几乎扁平化的树
