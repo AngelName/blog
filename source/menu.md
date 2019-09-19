@@ -5,5 +5,6 @@
   * [栈、队列、背包](/blog/栈队列背包)
   * [union-find算法](/blog/union-find算法)
 * [排序](/blog/排序)
+  * [初级排序算法](/blog/初级排序算法)
   
 
