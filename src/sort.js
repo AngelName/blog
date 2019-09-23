@@ -76,3 +76,5 @@ function shellSort(arr){
   }
 }
 test("希尔排序",shellSort)
+
+exports.insertionSort = insertionSort;
