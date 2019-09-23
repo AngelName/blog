@@ -53,22 +53,3 @@ function bottomTopTosort(a){
 }
 test("自底向上归并", MergeSort(bottomTopTosort))
 
-function sort(a, lo, hi) {
-  // 归并结束条件 如果hi == lo 说明数组成员只有一个
-  if (hi <= lo) return;
-  let mid = lo + parseInt((hi - lo) / 2); //获取中间
-  sort(a, lo, mid); // 排序左半边
-  sort(a, mid + 1, hi); // 排序右半边
-  insertionSort(a,lo,hi)
-}
-function insertionSort(arr,lo,hi){
-  console.log("插入排序优化归并")
-  let N = arr.length;
-  for(let i = lo;i<hi;i++){
-    // 内循环移动并交换大于arr[i]的元素
-    for(let j = i;j>0 && less(arr[j],arr[j-1]);j--){
-      exch(arr,j,j-1)
-    }
-  }
-}
-test("插入排序优化归并", MergeSort(sort))
