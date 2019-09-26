@@ -9,7 +9,7 @@ function merge(a, lo, mid, hi) {
     aux[k] = a[k] //aux 是辅助数组
   }
 
-  // 这个地方是重点
+  // 这个地方是重点,也是可以改进的地方,可以把下面的排序换成插入排序
   for (let k = lo; k <= hi; k++) {
     if (i > mid) a[k] = aux[j++] // 这个说明 lo ~ mid 已经没有元素了,把 mid + 1 ~ hi 的元素按照顺序放入 a 数组的余下位置
     else if (j > hi) a[k] = aux[i++] // 这个说明 mid+1 ~ hi 已经没有元素了,把 lo ~ mid 的元素按照顺序放入 a 数组的余下位置
@@ -52,4 +52,6 @@ function bottomTopTosort(a){
   }
 }
 test("自底向上归并", MergeSort(bottomTopTosort))
+
+
 

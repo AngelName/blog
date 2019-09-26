@@ -6,5 +6,6 @@
   * [union-find算法](/blog/union-find算法)
 * [排序](/blog/排序)
   * [初级排序算法](/blog/初级排序算法)
+  * [归并排序](/blog/归并排序)
   
 
