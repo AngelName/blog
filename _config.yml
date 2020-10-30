@@ -13,8 +13,8 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://localhost:4000
-root: /blog/
+url: https://suxin2017.github.io
+root: /algorithm-learn/
 permalink: :title/
 permalink_defaults:
 
