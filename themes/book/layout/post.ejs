@@ -1,0 +1,20 @@
+
+<div class="book-navbar">
+  <%- partial('_partials/navbar') %>
+</div>
+
+<div class="book-post">
+    <%- partial('_partials/book-title.ejs') %>
+  <%-page.content%>
+</div>
+
+
+<%- partial('_partials/paginator') %>
+
+<% if(page.comments != false) { %>
+  <div class="book-comments">
+    <%- partial('_partials/comments') %>
+  </div>
+<% } %>
+
+<%- js('/js/book-post') %>

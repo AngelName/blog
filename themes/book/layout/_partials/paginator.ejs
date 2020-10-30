@@ -1,0 +1,15 @@
+<% if(theme.paginator.enable) { %>
+<div id="footer-paginator">
+  <% if(page.hasPrev  && page.prevPath)  { %>
+    <div class="prev">
+      <a href= <%=page.prevPath%> ><span>上一篇: </span> <%=page.prevTitle%> </a>
+    </div>
+  <% } %>
+  <%-paginator()%>
+  <% if(page.hasNext && page.nextPath) { %>
+    <div class="next">
+      <a href= <%=page.nextPath%> ><span>下一篇: </span> <%=page.nextTitle%> </a>
+    </div>
+  <% } %>
+</div>
+<% } %>
