@@ -45,7 +45,7 @@ highlight:
   tab_replace:
   
 # Home page setting
-# path: Root path for your blogs index page. (default = '')
+# path: Root path for your algorithm-learns index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
@@ -79,7 +79,7 @@ theme: book
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/AngelName/blog.git
+  repo: https://github.com/suxin2017/algorithm-learn
   branch: gh-pages #published
 
 markdown:

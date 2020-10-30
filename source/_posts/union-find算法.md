@@ -145,7 +145,7 @@ function testQuickFindUF(){
 }
 ```
 
-![quick-find轨迹](/blog/images/quick-find-guiji.png)
+![quick-find轨迹](/algorithm-learn/images/quick-find-guiji.png)
 
 分析：
 : 这种算法 find 的速度很快，只访问了一次数组
