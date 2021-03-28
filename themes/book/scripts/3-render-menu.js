@@ -1,23 +1,47 @@
 /* global hexo */
 
-'use strict';
+"use strict";
 
-var ejs = require('ejs');
+var ejs = require("ejs");
 
 var menufile;
 
-hexo.on('generateAfter', function () {
+hexo.on("generateAfter", function () {
   var menu = hexo.theme.config.menu_page;
-  var pages = hexo.locals.get('pages')
-  pages.forEach(function(page){
-    if(page.source ===  menu) {
+  var pages = hexo.locals.get("pages");
+  pages.forEach(function (page) {
+    if (page.source === menu) {
       menufile = page;
     }
-  })
-})
+  });
+});
 
-hexo.extend.renderer.register('ejs', 'html', function(data, options){
-  options.filename = data.path;
-  options.sidebar = menufile ? menufile.content : '';
-  return ejs.render(data.text, options);
-}, true);
+hexo.extend.renderer.register(
+  "ejs",
+  "html",
+  function (data, options) {
+    options.filename = data.path;
+    options.sidebar = menufile
+      ? menufile.content.replace(
+          /href="\/(.*)"/gi,
+          `href="${options.config.root}$1"`
+        )
+      : "";
+    if (
+      options.page &&
+      options.page.content &&
+      options.page.content.indexOf(options.config.root) === -1
+    ) {
+      options.page.content = options.page.content.replace(
+        /href="\/(.*)"/gi,
+        `href="${options.config.root}$1"`
+      );
+      options.page.content = options.page.content.replace(
+        /src="\/(.*)"/gi,
+        `src="${options.config.root}$1"`
+      );
+    }
+    return ejs.render(data.text, options);
+  },
+  true
+);
