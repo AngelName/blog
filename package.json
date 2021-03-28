@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "hexo server",
-    "build": "hexo generate",
+    "build": "NODE_ENV=p hexo generate",
     "gp": "git push && git push second master"
   },
   "dependencies": {

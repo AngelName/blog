@@ -21,12 +21,18 @@ hexo.extend.renderer.register(
   "html",
   function (data, options) {
     options.filename = data.path;
-    options.sidebar = menufile
+    console.log(process.env.NODE_ENV)
+    if(!process.env.NODE_ENV){
+      options.sidebar = menufile
       ? menufile.content.replace(
           /href="\/(.*)"/gi,
           `href="${options.config.root}$1"`
         )
       : "";
+    }else{
+      options.sidebar = menufile ? menufile.content : '';
+    }
+ 
     if (
       options.page &&
       options.page.content &&
