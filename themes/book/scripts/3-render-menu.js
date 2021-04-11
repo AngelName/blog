@@ -21,7 +21,6 @@ hexo.extend.renderer.register(
   "html",
   function (data, options) {
     options.filename = data.path;
-    console.log(process.env.NODE_ENV)
     if(!process.env.NODE_ENV){
       options.sidebar = menufile
       ? menufile.content.replace(
