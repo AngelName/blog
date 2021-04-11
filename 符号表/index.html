@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/algorithm-learn/favicon.ico">
+    
+
+    <title>
+        
+          符号表 - 苏鑫的算法笔记
+        
+    </title>
+
+    <!-- Spectre.css framework (v0.5.8) -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <!-- Noto Sans SC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+    <!-- Noto Sans -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+    <!-- theme css & js -->
+    <link rel="stylesheet" href="/algorithm-learn/css/spectre_custom.css">
+    <link rel="stylesheet" href="/algorithm-learn/css/book.css">
+    <script src="/algorithm-learn/js/book.js"></script>
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+</head>
+
+<body>
+
+<div class="container">
+  <div class="book-container">
+    <div class="columns">
+      <div class="column col-2 hide-lg">
+        <div class="book-sidebar">
+  <h4 class="site-meta">
+    <a href="/algorithm-learn/">苏鑫的算法笔记</a>
+  </h4>
+  <div class="sidebar-content">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script src="/algorithm-learn/js/book-sidebar.js"></script>
+      </div>
+
+      <div class="column col-8 col-lg-12">
+        <div class="book-content">
+          
+<div class="book-navbar">
+  <header class="navbar">
+  <section class="navbar-section">
+    <img class="navbar-icon" src="/algorithm-learn/favicon.ico">
+  </section>
+  <section class="navbar-center">
+    苏鑫的算法笔记
+  </section>
+  <section class="navbar-section">
+    <label class="accordion-header c-hand" for="accordion-sidebar">
+      <i class="icon icon-menu"></i>
+    </label>
+  </section>
+</header>
+
+<div class="accordion">
+  <input type="checkbox" id="accordion-sidebar" name="accordion-checkbox" hidden>
+  <div class="accordion-body">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+</div>
+
+<div class="book-post">
+    <div class="book-title">
+    <header>
+      <h1>符号表</h1>
+      <div class="metadata">
+        <span> 创建时间:2021-04-11</span>
+        <span> 修改时间:2021-04-11</span>
+      </div>
+    <header>
+
+</div>
+  <p>符号表就是一个key value的对象，在js中我们对其再熟悉不过了。</p>
+<p>一个符号表的api</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ST()</td>
+<td>构造一个符号表</td>
+</tr>
+<tr>
+<td>put(key, value)</td>
+<td>向符号表中添加一个键值对</td>
+</tr>
+<tr>
+<td>get(key)</td>
+<td>根据key获取value</td>
+</tr>
+<tr>
+<td>delete(key)</td>
+<td>删除key</td>
+</tr>
+<tr>
+<td>contains(key)</td>
+<td>键key在表中是否存在对应值</td>
+</tr>
+<tr>
+<td>isEmpty()</td>
+<td>是否为空</td>
+</tr>
+<tr>
+<td>size()</td>
+<td>键值对数量</td>
+</tr>
+<tr>
+<td>keys()</td>
+<td>所有key的集合</td>
+</tr>
+</tbody>
+</table>
+<h2 id="约定">约定</h2>
+<ul>
+<li>不允许存在重复的键</li>
+<li>键不能为空</li>
+<li>值不能为空</li>
+<li>删除操作
+<ul>
+<li>延时删除 调用方法时，并不直接删除键，而是把键置空，在某个时间清除所用空的键</li>
+<li>即时删除 调用方法是，就删除对应的键值</li>
+</ul>
+</li>
+</ul>
+<h2 id="有序符号表和无序符号表">有序符号表和无序符号表</h2>
+<h3 id="有序符号表">有序符号表</h3>
+<p>在有序符号表中，将会对键进行排序，有序符号表更利于查询最值，和范围搜索。</p>
+<h3 id="无序符号表">无序符号表</h3>
+<p>文章最开始介绍的便是无序符号表，最常见的实现便是链表实现，下文会用链表实现一个无序的符号表。</p>
+<h2 id="链表实现无序符号表">链表实现无序符号表</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Node</span>(<span class="params">key, value, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.next = next;</span><br><span class="line">  <span class="keyword">this</span>.key = key;</span><br><span class="line">  <span class="keyword">this</span>.value = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SequentialSearchST</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.first;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SequentialSearchST.prototype = &#123;</span><br><span class="line">  <span class="keyword">get</span>(key) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> node = <span class="keyword">this</span>.first; node != <span class="literal">null</span>; node = node.next) &#123;</span><br><span class="line">      <span class="keyword">if</span> (node.key === key) &#123;</span><br><span class="line">        <span class="keyword">return</span> node.value;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  put(key, value) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> node = <span class="keyword">this</span>.first; node != <span class="literal">null</span>; node = node.next) &#123;</span><br><span class="line">      <span class="keyword">if</span> (node.key === key) &#123;</span><br><span class="line">        node.value = value;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.first = <span class="keyword">new</span> Node(key, value, <span class="keyword">this</span>.first); <span class="comment">// fitst 放到最后面</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这种实现对于大量数据的时候查询会有问题，单链表查询最坏情况下需要遍历每一个节点。</p>
+<p><a href="https://codepen.io/angelname/pen/NWdXQba" target="_blank" rel="noopener">无序符号表</a></p>
+<h4 id="有序数组通过二分查找的符号表">有序数组通过二分查找的符号表</h4>
+<p>二分查找在有序数组中时间复杂度是 <code>logN</code></p>
+<p>数组实现就是维护两个数组，一个是key的，一个是value的。</p>
+<p>但是这种算法在插入数组的时候需要维护数组的有序性。</p>
+<p>二分查找不仅仅能快速查找到数组中存在的值，对于我们这种不会有相同的键的情况，二分查找还能查找到不存在的键应该插入到数组那里。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">BinarySearchST</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.keys = [];</span><br><span class="line">  <span class="keyword">this</span>.values = [];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BinarySearchST.prototype = &#123;</span><br><span class="line">  <span class="keyword">get</span>(key) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.isEmpty()) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> i = <span class="keyword">this</span>.rank(key);</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.values[i],i);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="keyword">this</span>.size() &amp;&amp; <span class="keyword">this</span>.keys[i] === key) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.values[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  put(key, value) &#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="keyword">this</span>.rank(key);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="keyword">this</span>.size() &amp;&amp; <span class="keyword">this</span>.keys[i] === key) &#123;</span><br><span class="line">      <span class="keyword">this</span>.values[i] = value;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="keyword">this</span>.size(); j &gt; i; j--) &#123;</span><br><span class="line">      <span class="keyword">this</span>.keys[j] = <span class="keyword">this</span>.keys[j - <span class="number">1</span>];</span><br><span class="line">      <span class="keyword">this</span>.values[j] = <span class="keyword">this</span>.values[j - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.keys[i] = key;</span><br><span class="line">    <span class="keyword">this</span>.values[i] = value;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.keys);</span><br><span class="line">    </span><br><span class="line">  &#125;,</span><br><span class="line">  rank(key) &#123;</span><br><span class="line">    <span class="keyword">let</span> lo = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> hi = <span class="keyword">this</span>.keys.length - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (lo &lt;= hi) &#123;</span><br><span class="line">      <span class="keyword">let</span> mid = <span class="built_in">Math</span>.floor(lo + ( hi - lo) / <span class="number">2</span>);</span><br><span class="line">      <span class="keyword">if</span> (key &lt; <span class="keyword">this</span>.keys[mid]) &#123;</span><br><span class="line">        hi = mid - <span class="number">1</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (key &gt; <span class="keyword">this</span>.keys[mid]) &#123;</span><br><span class="line">        lo = mid + <span class="number">1</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 没找到时候应该插入的位置</span></span><br><span class="line">    <span class="keyword">return</span> lo;</span><br><span class="line">  &#125;,</span><br><span class="line">  isEmpty() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.keys.length === <span class="number">0</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">  size() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.keys.length;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><a href="https://codepen.io/angelname/pen/qBRpeyO?editors=0011" target="_blank" rel="noopener">有序数组的二分查找</a></p>
+<p>插入操作很慢，因为要每次都移动数组元素，查询操作比较快，二分查找的优点。</p>
+
+</div>
+
+
+
+<div id="footer-paginator">
+  
+  
+  
+</div>
+
+
+
+  <div class="book-comments">
+    
+
+
+  </div>
+
+
+<script src="/algorithm-learn/js/book-post.js"></script>
+        </div>
+      </div>
+
+      <div class="column col-2 hide-lg">
+        <div class="book-toc">
+  <div class="book-tocbot">
+  </div>
+  <div class="book-tocbot-menu">
+    <!-- <a class="book-toc-expand" onclick="expand_toc()">Expand all</a> -->
+    <a onclick="go_top()">Back to top</a>
+    <a onclick="go_bottom()">Go to bottom</a>
+  </div>
+</div>
+
+<script>
+tocbot.init({
+  tocSelector: '.book-tocbot',
+  contentSelector: '.book-post',
+  headingSelector: 'h1, h2, h3, h4, h5',
+  collapseDepth: 2,
+  orderedList: false,
+  scrollSmooth: false,
+});
+
+function expand_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 6,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "collapse_toc()");
+  b.innerHTML = "Collapse all"
+}
+
+function collapse_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 2,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "expand_toc()");
+  b.innerHTML = "Expand all"
+}
+
+function go_top() {
+  window.scrollTo(0, 0);
+}
+
+function go_bottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+</script>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

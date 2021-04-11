@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/algorithm-learn/favicon.ico">
+    
+
+    <title>
+        
+          空间复杂度 - 苏鑫的算法笔记
+        
+    </title>
+
+    <!-- Spectre.css framework (v0.5.8) -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <!-- Noto Sans SC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+    <!-- Noto Sans -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+    <!-- theme css & js -->
+    <link rel="stylesheet" href="/algorithm-learn/css/spectre_custom.css">
+    <link rel="stylesheet" href="/algorithm-learn/css/book.css">
+    <script src="/algorithm-learn/js/book.js"></script>
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+</head>
+
+<body>
+
+<div class="container">
+  <div class="book-container">
+    <div class="columns">
+      <div class="column col-2 hide-lg">
+        <div class="book-sidebar">
+  <h4 class="site-meta">
+    <a href="/algorithm-learn/">苏鑫的算法笔记</a>
+  </h4>
+  <div class="sidebar-content">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script src="/algorithm-learn/js/book-sidebar.js"></script>
+      </div>
+
+      <div class="column col-8 col-lg-12">
+        <div class="book-content">
+          
+<div class="book-navbar">
+  <header class="navbar">
+  <section class="navbar-section">
+    <img class="navbar-icon" src="/algorithm-learn/favicon.ico">
+  </section>
+  <section class="navbar-center">
+    苏鑫的算法笔记
+  </section>
+  <section class="navbar-section">
+    <label class="accordion-header c-hand" for="accordion-sidebar">
+      <i class="icon icon-menu"></i>
+    </label>
+  </section>
+</header>
+
+<div class="accordion">
+  <input type="checkbox" id="accordion-sidebar" name="accordion-checkbox" hidden>
+  <div class="accordion-body">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+</div>
+
+<div class="book-post">
+    <div class="book-title">
+    <header>
+      <h1>空间复杂度</h1>
+      <div class="metadata">
+        <span> 创建时间:2019-09-13</span>
+        <span> 修改时间:2019-09-13</span>
+      </div>
+    <header>
+
+</div>
+  <p>当写程序需要一段空间的时候,通常是声明一个变量,新建一个对象,或者新建一个数组的时候.我们向计算机要我们所需要的内存空间.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 思考一下在这段代码发生了什么</span></span><br><span class="line"><span class="keyword">var</span> numArray = <span class="built_in">Array</span>(<span class="number">10</span>).fill(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/algorithm-learn/images/shuzufenpei.png" alt="数组初始化"></p>
+<div class="note">
+  <p>在这段代码中先是声明一个长度为 10 的数组,然后把数组中的每个成员初始化赋值 0</p>
+  <p>然后就有了一段存储这写数值的内存,如果把计算机所有的内存比作一辆火车,
+  这段代码就是说我包了十个车厢,然后把0这个成员放进车厢内</p>
+</div>
+<h3 id="为什么要考虑空间复杂度">为什么要考虑空间复杂度</h3>
+<p>虽然计算机的内存越来越大,但是在某些场景下仍然满足不了需要.<br>
+每天吃饭的时候我都会想,哪里有好吃不贵,经济实惠的饭呢!<br>
+编写程序的时候也需要知道每种算法的空间复杂度,比如散列表用的空间越大散列分布越均匀,查询的时候也就越快.但是并不能把所有的内存都给他,因为计算机还有其他的工作要干.<br>
+还比如对于几个有序的数组,我们通过一个占有很小空间的一个优先队列就能把他们有序输出.</p>
+<h3 id="递归调用内存分配">递归调用内存分配</h3>
+<p>我在想什么能有更好的理解一个空间分配呢?后来想到了+递归的方式去理解空间分配问题.<br>
+在编写递归的程序的时候经常会发现,内存溢出的问题.这是因为递归的内存分配到一个栈,栈的大小一直递增.</p>
+<h2 id="递归时候的内存分配">递归时候的内存分配</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> max = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">recursion</span>(<span class="params">max,count</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(count === max || <span class="keyword">typeof</span> count != <span class="string">'number'</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125; </span><br><span class="line">  recursion(max,count+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">recursion(max,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<iframe height="467" style="width: 100%;" scrolling="no" title="递归时候内存状态" src="/algorithm-learn//codepen.io/angelname/embed/RwbJyOK/?height=265&theme-id=light&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/angelname/pen/RwbJyOK/" target="_blank" rel="noopener">递归时候内存状态</a> by bxer
+  (<a href="https://codepen.io/angelname" target="_blank" rel="noopener">@angelname</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+<h3 id="总结">总结</h3>
+<p>通过对内存的使用分析能够让在某些特定的情况下选择更加合适的算法</p>
+
+</div>
+
+
+
+<div id="footer-paginator">
+  
+    <div class="prev">
+      <a href="/algorithm-learn//时间复杂度" ><span>上一篇: </span> 时间复杂度 </a>
+    </div>
+  
+  
+  
+    <div class="next">
+      <a href="/algorithm-learn//栈队列背包" ><span>下一篇: </span> 栈、队列、背包 </a>
+    </div>
+  
+</div>
+
+
+
+  <div class="book-comments">
+    
+
+
+  </div>
+
+
+<script src="/algorithm-learn/js/book-post.js"></script>
+        </div>
+      </div>
+
+      <div class="column col-2 hide-lg">
+        <div class="book-toc">
+  <div class="book-tocbot">
+  </div>
+  <div class="book-tocbot-menu">
+    <!-- <a class="book-toc-expand" onclick="expand_toc()">Expand all</a> -->
+    <a onclick="go_top()">Back to top</a>
+    <a onclick="go_bottom()">Go to bottom</a>
+  </div>
+</div>
+
+<script>
+tocbot.init({
+  tocSelector: '.book-tocbot',
+  contentSelector: '.book-post',
+  headingSelector: 'h1, h2, h3, h4, h5',
+  collapseDepth: 2,
+  orderedList: false,
+  scrollSmooth: false,
+});
+
+function expand_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 6,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "collapse_toc()");
+  b.innerHTML = "Collapse all"
+}
+
+function collapse_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 2,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "expand_toc()");
+  b.innerHTML = "Expand all"
+}
+
+function go_top() {
+  window.scrollTo(0, 0);
+}
+
+function go_bottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+</script>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

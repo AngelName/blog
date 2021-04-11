@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/algorithm-learn/favicon.ico">
+    
+
+    <title>
+        
+          时间复杂度 - 苏鑫的算法笔记
+        
+    </title>
+
+    <!-- Spectre.css framework (v0.5.8) -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <!-- Noto Sans SC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+    <!-- Noto Sans -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+    <!-- theme css & js -->
+    <link rel="stylesheet" href="/algorithm-learn/css/spectre_custom.css">
+    <link rel="stylesheet" href="/algorithm-learn/css/book.css">
+    <script src="/algorithm-learn/js/book.js"></script>
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+</head>
+
+<body>
+
+<div class="container">
+  <div class="book-container">
+    <div class="columns">
+      <div class="column col-2 hide-lg">
+        <div class="book-sidebar">
+  <h4 class="site-meta">
+    <a href="/algorithm-learn/">苏鑫的算法笔记</a>
+  </h4>
+  <div class="sidebar-content">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script src="/algorithm-learn/js/book-sidebar.js"></script>
+      </div>
+
+      <div class="column col-8 col-lg-12">
+        <div class="book-content">
+          
+<div class="book-navbar">
+  <header class="navbar">
+  <section class="navbar-section">
+    <img class="navbar-icon" src="/algorithm-learn/favicon.ico">
+  </section>
+  <section class="navbar-center">
+    苏鑫的算法笔记
+  </section>
+  <section class="navbar-section">
+    <label class="accordion-header c-hand" for="accordion-sidebar">
+      <i class="icon icon-menu"></i>
+    </label>
+  </section>
+</header>
+
+<div class="accordion">
+  <input type="checkbox" id="accordion-sidebar" name="accordion-checkbox" hidden>
+  <div class="accordion-body">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+</div>
+
+<div class="book-post">
+    <div class="book-title">
+    <header>
+      <h1>时间复杂度</h1>
+      <div class="metadata">
+        <span> 创建时间:2019-09-11</span>
+        <span> 修改时间:2019-09-12</span>
+      </div>
+    <header>
+
+</div>
+  <p>在研究算法的时候我们经常会说时间复杂度,空间复杂度.</p>
+<p>然而通常情况下我们考虑更多的是时间复杂度,因为如今计算机发展迅速,存储越来越大,不过不论存储多大,人们对其需求都是无穷无尽的,记得我那时候手机运存还是 128m 的,内存卡有个 2G 内存就算大了,手机游戏也就几十 M,而现在手机起步就是 G 级别的内存,于此同时,手机游戏也越来越大,手机应用更是如此,所以空间复杂度也得进入考虑范围之内.</p>
+<blockquote>
+<p>书中说<br>
+我的程序会运行多长时间?<br>
+为什么我的程序耗尽了所有的内存?</p>
+</blockquote>
+<p>当我面对我写的代码在 leetcode 上提示编译超时的时候,咱也不敢问咱也不敢说!!!</p>
+<h2 id="成本模型">成本模型</h2>
+<p>在任一算法的估算的时候,我们都会建立其成本模型来估算算法的性质,这个模型定义了研究算法中的基本操作.<br>
+比如有些算法中我们会考虑对于数据访问的问题</p>
+<h2 id="常用转换">常用转换</h2>
+<p>下面是算法中的一些常见的函数分析</p>
+<h3 id="常用的近似函数">常用的近似函数</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">近似函数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">调和级数a和</td>
+<td style="text-align:center">H<sub>n</sub>=1+1/2+1/3+1/4+···+1/N ~ lnN</td>
+</tr>
+<tr>
+<td style="text-align:center">等差数列求和</td>
+<td style="text-align:center">1+2+3+4+···+N ~ N<sub>2</sub>/2</td>
+</tr>
+<tr>
+<td style="text-align:center">等比数列求和</td>
+<td style="text-align:center">1+2+4+5+···+N=2N-1 ~ 2N 其中 N = 2<sup>n</sup></td>
+</tr>
+<tr>
+<td style="text-align:center">斯特灵公式</td>
+<td style="text-align:center">lgN! = lg1+lg2+lg3+lg4+···+lgN ~ NlgN</td>
+</tr>
+<tr>
+<td style="text-align:center">二项式系数</td>
+<td style="text-align:center">这个在书中很少用到而且这个我不会写它的markdown</td>
+</tr>
+<tr>
+<td style="text-align:center">指数函数</td>
+<td style="text-align:center">(1-1/x)<sup>x</sup> ~ 1/e</td>
+</tr>
+</tbody>
+</table>
+<h3 id="常见增长数量级">常见增长数量级</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">描 述</th>
+<th style="text-align:center">增长的数量级</th>
+<th style="text-align:center">典型的代码</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">常数级别</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>a = b + c</code></td>
+<td style="text-align:center">普通语句</td>
+<td style="text-align:center">将两个变量加</td>
+</tr>
+<tr>
+<td style="text-align:center">对数级别</td>
+<td style="text-align:center">logN</td>
+<td style="text-align:center"><a href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE">二分查找</a></td>
+<td style="text-align:center">二分策略</td>
+<td style="text-align:center">二分查找</td>
+</tr>
+<tr>
+<td style="text-align:center">线性级别</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center"><a href="#%E6%89%BE%E5%87%BA%E6%9C%80%E5%A4%A7%E5%80%BC">找出最大值</a></td>
+<td style="text-align:center">循环</td>
+<td style="text-align:center">找出最大值</td>
+</tr>
+<tr>
+<td style="text-align:center">线性对数级别</td>
+<td style="text-align:center">NlogN</td>
+<td style="text-align:center">❎ 归并排序</td>
+<td style="text-align:center">分治</td>
+<td style="text-align:center">归并排序</td>
+</tr>
+<tr>
+<td style="text-align:center">平方级别</td>
+<td style="text-align:center">N<sup>2</sup></td>
+<td style="text-align:center"><a href="#%E5%8F%8C%E5%B1%82%E5%BE%AA%E7%8E%AF">双层循环</a></td>
+<td style="text-align:center">双层循环</td>
+<td style="text-align:center">检查所有元素对</td>
+</tr>
+<tr>
+<td style="text-align:center">立方级别</td>
+<td style="text-align:center">N<sup>3</sup></td>
+<td style="text-align:center"><a href="#%E4%B8%89%E5%B1%82%E5%BE%AA%E7%8E%AF">三层循环</a></td>
+<td style="text-align:center">三层循环</td>
+<td style="text-align:center">查找三数相加为0</td>
+</tr>
+<tr>
+<td style="text-align:center">指数级别</td>
+<td style="text-align:center">2<sup>N</sup></td>
+<td style="text-align:center">❎ 穷举查询</td>
+<td style="text-align:center">穷举查询</td>
+<td style="text-align:center">检查所有子集</td>
+</tr>
+</tbody>
+</table>
+<h2 id="代码">代码</h2>
+<h3 id="二分查找">二分查找</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(lo&lt;hi)&#123;</span><br><span class="line">   <span class="keyword">let</span> mid = <span class="built_in">Math</span>.floor(lo + (hi-lo)/<span class="number">2</span>);</span><br><span class="line">   <span class="keyword">if</span>(arr[mid] === key)&#123;</span><br><span class="line">     <span class="keyword">return</span>;</span><br><span class="line">   &#125; <span class="keyword">else</span> <span class="keyword">if</span>(arr[mid]&lt;key)&#123;</span><br><span class="line">     lo = mid;</span><br><span class="line">   &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">     hi = mid;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="找出最大值">找出最大值</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">double max = a[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>;i&lt;N;i++)</span><br><span class="line">  <span class="keyword">if</span>(a[i]&gt;max)max=a[i]</span><br></pre></td></tr></table></figure>
+<h3 id="归并排序-❎">归并排序 ❎</h3>
+<h3 id="双层循环">双层循环</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; n;i++)</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>;j&lt; n; j++)</span><br><span class="line">    <span class="keyword">if</span>(a[i]+a[j] === <span class="number">0</span>)</span><br><span class="line">      cnt++;</span><br></pre></td></tr></table></figure>
+<h3 id="三层循环">三层循环</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i &lt; n;i++)</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>;j&lt; n; j++)</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">let</span> k = <span class="number">0</span>;k&lt; n; k++)</span><br><span class="line">        <span class="keyword">if</span>(a[i]+a[j]+a[k] === <span class="number">0</span>)</span><br><span class="line">          cnt++;</span><br></pre></td></tr></table></figure>
+<h3 id="穷举查询">穷举查询</h3>
+<h2 id="codepen-关于各种级别的图例">codepen 关于各种级别的图例</h2>
+<iframe height="600" style="width: 100%;" scrolling="no" title="时间复杂度" src="/algorithm-learn//codepen.io/angelname/embed/QWLrYoW/?height=265&theme-id=light&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/angelname/pen/QWLrYoW/" target="_blank" rel="noopener">时间复杂度</a> by bxer
+  (<a href="https://codepen.io/angelname" target="_blank" rel="noopener">@angelname</a>) on <a href="https://codepen.io" target="_blank" rel="noopener">CodePen</a>.
+</iframe>
+</div>
+
+
+
+<div id="footer-paginator">
+  
+    <div class="prev">
+      <a href="/algorithm-learn//基础" ><span>上一篇: </span> 基础 </a>
+    </div>
+  
+  
+  
+    <div class="next">
+      <a href="/algorithm-learn//空间复杂度" ><span>下一篇: </span> 空间复杂度 </a>
+    </div>
+  
+</div>
+
+
+
+  <div class="book-comments">
+    
+
+
+  </div>
+
+
+<script src="/algorithm-learn/js/book-post.js"></script>
+        </div>
+      </div>
+
+      <div class="column col-2 hide-lg">
+        <div class="book-toc">
+  <div class="book-tocbot">
+  </div>
+  <div class="book-tocbot-menu">
+    <!-- <a class="book-toc-expand" onclick="expand_toc()">Expand all</a> -->
+    <a onclick="go_top()">Back to top</a>
+    <a onclick="go_bottom()">Go to bottom</a>
+  </div>
+</div>
+
+<script>
+tocbot.init({
+  tocSelector: '.book-tocbot',
+  contentSelector: '.book-post',
+  headingSelector: 'h1, h2, h3, h4, h5',
+  collapseDepth: 2,
+  orderedList: false,
+  scrollSmooth: false,
+});
+
+function expand_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 6,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "collapse_toc()");
+  b.innerHTML = "Collapse all"
+}
+
+function collapse_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 2,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "expand_toc()");
+  b.innerHTML = "Expand all"
+}
+
+function go_top() {
+  window.scrollTo(0, 0);
+}
+
+function go_bottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+</script>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

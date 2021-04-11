@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/algorithm-learn/favicon.ico">
+    
+
+    <title>
+        
+          快速排序 - 苏鑫的算法笔记
+        
+    </title>
+
+    <!-- Spectre.css framework (v0.5.8) -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <!-- Noto Sans SC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+    <!-- Noto Sans -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+    <!-- theme css & js -->
+    <link rel="stylesheet" href="/algorithm-learn/css/spectre_custom.css">
+    <link rel="stylesheet" href="/algorithm-learn/css/book.css">
+    <script src="/algorithm-learn/js/book.js"></script>
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+</head>
+
+<body>
+
+<div class="container">
+  <div class="book-container">
+    <div class="columns">
+      <div class="column col-2 hide-lg">
+        <div class="book-sidebar">
+  <h4 class="site-meta">
+    <a href="/algorithm-learn/">苏鑫的算法笔记</a>
+  </h4>
+  <div class="sidebar-content">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script src="/algorithm-learn/js/book-sidebar.js"></script>
+      </div>
+
+      <div class="column col-8 col-lg-12">
+        <div class="book-content">
+          
+<div class="book-navbar">
+  <header class="navbar">
+  <section class="navbar-section">
+    <img class="navbar-icon" src="/algorithm-learn/favicon.ico">
+  </section>
+  <section class="navbar-center">
+    苏鑫的算法笔记
+  </section>
+  <section class="navbar-section">
+    <label class="accordion-header c-hand" for="accordion-sidebar">
+      <i class="icon icon-menu"></i>
+    </label>
+  </section>
+</header>
+
+<div class="accordion">
+  <input type="checkbox" id="accordion-sidebar" name="accordion-checkbox" hidden>
+  <div class="accordion-body">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+</div>
+
+<div class="book-post">
+    <div class="book-title">
+    <header>
+      <h1>快速排序</h1>
+      <div class="metadata">
+        <span> 创建时间:2019-09-26</span>
+        <span> 修改时间:2019-09-26</span>
+      </div>
+    <header>
+
+</div>
+  <p>快速排序是应用最广泛的排序算法.快速排序流行的原因是它实现简单,适用于各种不同的输入数据且在一般应用中比其他排序算法快的多.</p>
+<dl>
+<dt>特点</dt>
+<dd>原地排序,需要一个很小的辅助栈</dd>
+<dd>对于长度为 N 的数组,需要的时间和 NlgN 成正比</dd>
+<dd>非常<strong>脆弱</strong>,一不小心性能就会十分低劣,导致时间到达<strong>平方级</strong></dd>
+</dl>
+<h2 id="基本算法">基本算法</h2>
+<p>快速排序和归并排序一样,也是一种分治思想的算法.<br>
+与归并排序不同:<br>
+归并排序将数组分成两个子数组分别排序,并将有序的子数组归并以将整个数组排序.<br>
+快速排序将数组排序的方式则是当两个子数组都有序的时候整个数组也就自然有序了.<br>
+实现的时候:<br>
+对于归并排序,递归调用发生在处理整个数组之前.<br>
+对于快速排序,递归调用发生在处理整个数组之后.<br>
+排序时候:<br>
+归并排序: 数组被分成两半.<br>
+快速排序: 切分的位置取决于数组的内容.</p>
+<figure class="highlight js"><figcaption><span>quick sort</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">sortAfter(a)&#123;</span><br><span class="line">  shuffleArray(a)</span><br><span class="line">  sort(a,<span class="number">0</span>,a.length <span class="number">-1</span> )</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">a,lo,hi</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(hi &lt;= lo)<span class="keyword">return</span>; </span><br><span class="line">  <span class="comment">// 切分 以 j 为中心.把小于 a[j] 的元素放数组的一边,大于的放一边</span></span><br><span class="line">  <span class="keyword">let</span> j = partition(a,lo,hi) </span><br><span class="line">  sort(a,lo,j<span class="number">-1</span>);</span><br><span class="line">  sort(a,j<span class="number">-1</span>,hi);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partition</span>(<span class="params">a,lo,hi</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i = lo,j=hi+<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">const</span> v = a[lo];</span><br><span class="line">  <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">    <span class="comment">// 先+1 是因为 a[lo] 作为哨兵值</span></span><br><span class="line">    <span class="keyword">while</span>(less(a[++i],v))<span class="keyword">if</span>(i==hi)<span class="keyword">break</span>; <span class="comment">// 左边到了最后一个</span></span><br><span class="line">    <span class="keyword">while</span>(less(v,a[--j]))<span class="keyword">if</span>(j==lo)<span class="keyword">break</span>; <span class="comment">// 右边到了第一个</span></span><br><span class="line">    <span class="comment">// 全部分完 j 的左边都是小于 a[lo] 的元素</span></span><br><span class="line">    <span class="comment">// j 的右边都是大于 a[lo] 的元素</span></span><br><span class="line">    <span class="keyword">if</span>(i &gt;= j) <span class="keyword">break</span>; </span><br><span class="line">    exch(a,i,j)</span><br><span class="line">  &#125;</span><br><span class="line">  exch(a,lo,j)</span><br><span class="line">  <span class="keyword">return</span> j;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="算法改进">算法改进</h2>
+<h3 id="切换到插入排序">切换到插入排序</h3>
+<ul>
+<li>对于小数组,快速排序比插入排序慢</li>
+<li>因为递归,快熟排序的sort() 方法在小的数组中也会调用自己</li>
+</ul>
+<dl>
+<dt>改进</dt>
+<dd>将 sort() 中的语句<br>
+<code>if(hi &lt;=lo) return;</code><br>
+替换成<br>
+<code>if(hi &lt;= lo + M){Insertion.sort(a,lo,hi);return;}</code></dd>
+</dl>
+<p>M 的最佳值和系统相关,一般是 5 ~ 15 的任意值在大多数情况都令人满意</p>
+<h2 id="三取样切分">三取样切分</h2>
+<p>使用子数组的一小部分元素的中位数来切分数组.</p>
+<h2 id="熵最优的排序">熵最优的排序</h2>
+<p>实际应用中经常会出现含有<strong>大量重复元素</strong>的数组.<br>
+在这些情况下,一个元素全部重复的子数组不需要排序,当时算法还会继续切分.<br>
+改进:<br>
+将数组切分为<strong>三部分</strong> 分别对应 <strong>小于</strong> 、 <strong>大于</strong> 、<strong>等于</strong> 切分元素的数组元素.</p>
+<p>荷兰国旗问题…, 这个题没见过不知道是啥问题.</p>
+<dl>
+<dt>实现思路:</dt>
+<dd>维护三个指针:
+<ul>
+<li>lt 使的 a[lo…lt-1] 中的元素都小于 v</li>
+<li>gt 使的 a[gt+1…hi] 中的元素都大于 v</li>
+<li>i 使的 a[lt…i-1] 中的元素都等于 v</li>
+<li>a[i…gt] 中的元素还未确定</li>
+</ul>
+</dd>
+<dd>一开始 i 和 lo 相等,对于比较大小的三种情况做下面的处理:
+<ul>
+<li>a[i] 小于 v, 将 a[lt] 和 a[i] 交换, 将 lt 和 i 加 一;</li>
+<li>a[i] 大于 v, 将 a[gt] 和 a[i] 交换, 将 gt 减 一;</li>
+<li>a[i] 等于 v, 将 i 加 一</li>
+</ul>
+</dd>
+</dl>
+<figure class="highlight js"><figcaption><span>quick3way</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">a,lo,hi</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(hi &lt;= lo) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">let</span> lt = lo,i = lo+<span class="number">1</span>, gt = hi;</span><br><span class="line">  <span class="keyword">let</span> v = a[lo];</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span>(i &lt;= gt)&#123;</span><br><span class="line">    <span class="comment">// a[i] 小于 v cmp 小于 0</span></span><br><span class="line">    <span class="comment">// a[i] 大于 v cmp 大于 0</span></span><br><span class="line">    <span class="comment">// a[i] 等于 v cmp 等于 0</span></span><br><span class="line">    <span class="keyword">let</span> cmp = a[i] - v; </span><br><span class="line">    <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>) exch(a,lt++,i++);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(cmp &gt; <span class="number">0</span>) exch(a,i,gt--);</span><br><span class="line">    <span class="keyword">else</span> i++;</span><br><span class="line">  &#125;</span><br><span class="line">  sort(a, lo, lt - <span class="number">1</span>);</span><br><span class="line">  sort(a, gt + <span class="number">1</span>, hi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div>
+
+
+
+<div id="footer-paginator">
+  
+    <div class="prev">
+      <a href="/algorithm-learn//归并排序" ><span>上一篇: </span> 归并排序 </a>
+    </div>
+  
+  
+  
+    <div class="next">
+      <a href="/algorithm-learn//优先队列" ><span>下一篇: </span> 优先队列和堆排序 </a>
+    </div>
+  
+</div>
+
+
+
+  <div class="book-comments">
+    
+
+
+  </div>
+
+
+<script src="/algorithm-learn/js/book-post.js"></script>
+        </div>
+      </div>
+
+      <div class="column col-2 hide-lg">
+        <div class="book-toc">
+  <div class="book-tocbot">
+  </div>
+  <div class="book-tocbot-menu">
+    <!-- <a class="book-toc-expand" onclick="expand_toc()">Expand all</a> -->
+    <a onclick="go_top()">Back to top</a>
+    <a onclick="go_bottom()">Go to bottom</a>
+  </div>
+</div>
+
+<script>
+tocbot.init({
+  tocSelector: '.book-tocbot',
+  contentSelector: '.book-post',
+  headingSelector: 'h1, h2, h3, h4, h5',
+  collapseDepth: 2,
+  orderedList: false,
+  scrollSmooth: false,
+});
+
+function expand_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 6,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "collapse_toc()");
+  b.innerHTML = "Collapse all"
+}
+
+function collapse_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 2,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "expand_toc()");
+  b.innerHTML = "Expand all"
+}
+
+function go_top() {
+  window.scrollTo(0, 0);
+}
+
+function go_bottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+</script>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

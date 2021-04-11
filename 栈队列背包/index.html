@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/algorithm-learn/favicon.ico">
+    
+
+    <title>
+        
+          栈、队列、背包 - 苏鑫的算法笔记
+        
+    </title>
+
+    <!-- Spectre.css framework (v0.5.8) -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <!-- Noto Sans SC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+    <!-- Noto Sans -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+    <!-- theme css & js -->
+    <link rel="stylesheet" href="/algorithm-learn/css/spectre_custom.css">
+    <link rel="stylesheet" href="/algorithm-learn/css/book.css">
+    <script src="/algorithm-learn/js/book.js"></script>
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+</head>
+
+<body>
+
+<div class="container">
+  <div class="book-container">
+    <div class="columns">
+      <div class="column col-2 hide-lg">
+        <div class="book-sidebar">
+  <h4 class="site-meta">
+    <a href="/algorithm-learn/">苏鑫的算法笔记</a>
+  </h4>
+  <div class="sidebar-content">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script src="/algorithm-learn/js/book-sidebar.js"></script>
+      </div>
+
+      <div class="column col-8 col-lg-12">
+        <div class="book-content">
+          
+<div class="book-navbar">
+  <header class="navbar">
+  <section class="navbar-section">
+    <img class="navbar-icon" src="/algorithm-learn/favicon.ico">
+  </section>
+  <section class="navbar-center">
+    苏鑫的算法笔记
+  </section>
+  <section class="navbar-section">
+    <label class="accordion-header c-hand" for="accordion-sidebar">
+      <i class="icon icon-menu"></i>
+    </label>
+  </section>
+</header>
+
+<div class="accordion">
+  <input type="checkbox" id="accordion-sidebar" name="accordion-checkbox" hidden>
+  <div class="accordion-body">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+</div>
+
+<div class="book-post">
+    <div class="book-title">
+    <header>
+      <h1>栈、队列、背包</h1>
+      <div class="metadata">
+        <span> 创建时间:2019-09-16</span>
+        <span> 修改时间:2019-09-16</span>
+      </div>
+    <header>
+
+</div>
+  <p>这节将会讨论两种数据接口</p>
+<ul>
+<li>顺序存储结构</li>
+<li>链式存储结构</li>
+</ul>
+<p>当了解这两个概念之后，会了解集合.</p>
+<blockquote>
+<p>许多基础数据类型都和对象的集合有关</p>
+</blockquote>
+<p>然后会继续深入将一些基础集合，栈、队列、背包对于链式存储的实现<br>
+打好这些基本数据接口的基础对于后面的学习十分重要</p>
+<h3 id="基本存储结构">基本存储结构</h3>
+<h4 id="顺序存储结构">顺序存储结构</h4>
+<blockquote>
+<p>在计算机中用一组地址连续的存储单元依次存储线性表的各个数据元素,称作线性表的顺序存储结构。</p>
+</blockquote>
+<p>数组的存储就是逻辑顺序和物理顺序相对应</p>
+<p><img src="/algorithm-learn/images/array.png" alt="数组"></p>
+<p>物理顺序和逻辑顺序一致</p>
+<dl>
+<dt>优点</dt>
+<dd>
+<ul>
+<li>节省存储空间 因为不需要额外的内存开销.比如:链表中指向下一个节点的指针</li>
+<li>随机存取表中元素、储存密度大。</li>
+</ul>
+</dd>
+<dt>缺点</dt>
+<dd>
+<ul>
+<li>插入和删除操作需要移动元素。</li>
+</ul>
+</dd>
+</dl>
+<h3 id="链式存储结构">链式存储结构</h3>
+<blockquote>
+<p>在计算机中用一组任意的存储单元存储线性表的数据元素(这组存储单元可以是连续的,也可以是不连续的).</p>
+</blockquote>
+<p>数组在一些场景下也可以是链式存储接口比如第一章的 ❎ 动态连通问题,和 ❎ 堆排序那部分的时候.</p>
+<p>链表就好像和顺序存储是互补的一样,链表没有了顺序存储的缺点,同样也失去了顺序存储的优点</p>
+<dl>
+<dt>链表单个节点</dt>
+<dd>单向链表节点示例</dd>
+</dl>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">  object item;</span><br><span class="line">  Node next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/algorithm-learn/images/link.png" alt="单向链表"></p>
+<dl>
+<dt>链表单个节点</dt>
+<dd>双向链表节点示例</dd>
+</dl>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">  Node pre;</span><br><span class="line">  object item;</span><br><span class="line">  Node next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/algorithm-learn/images/doublelink.png" alt="双向链表"></p>
+<h3 id="api">API</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">背包</th>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left">Bag()</td>
+<td style="text-align:left">创建一个空背包</td>
+</tr>
+<tr>
+<td style="text-align:right">void</td>
+<td style="text-align:left">add(Item item)</td>
+<td style="text-align:left">添加一个元素</td>
+</tr>
+<tr>
+<td style="text-align:right">boolean</td>
+<td style="text-align:left">isEmpty()</td>
+<td style="text-align:left">是否为空</td>
+</tr>
+<tr>
+<td style="text-align:right">int</td>
+<td style="text-align:left">size()</td>
+<td style="text-align:left">背包中的元素数量</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">队列(先进先出)</th>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left">Queue()</td>
+<td style="text-align:left">创建一个空背包</td>
+</tr>
+<tr>
+<td style="text-align:right">void</td>
+<td style="text-align:left">enqueue(Item item)</td>
+<td style="text-align:left">添加一个元素</td>
+</tr>
+<tr>
+<td style="text-align:right">item</td>
+<td style="text-align:left">dequeue(Item item)</td>
+<td style="text-align:left">删除最先添加的元素</td>
+</tr>
+<tr>
+<td style="text-align:right">boolean</td>
+<td style="text-align:left">isEmpty()</td>
+<td style="text-align:left">是否为空</td>
+</tr>
+<tr>
+<td style="text-align:right">int</td>
+<td style="text-align:left">size()</td>
+<td style="text-align:left">队列中的元素数量</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">栈(后进后出)</th>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left">Stack()</td>
+<td style="text-align:left">创建一个空背包</td>
+</tr>
+<tr>
+<td style="text-align:right">void</td>
+<td style="text-align:left">push(Item item)</td>
+<td style="text-align:left">添加一个元素</td>
+</tr>
+<tr>
+<td style="text-align:right">item</td>
+<td style="text-align:left">pop()</td>
+<td style="text-align:left">删除最后添加的元素</td>
+</tr>
+<tr>
+<td style="text-align:right">boolean</td>
+<td style="text-align:left">isEmpty()</td>
+<td style="text-align:left">是否为空</td>
+</tr>
+<tr>
+<td style="text-align:right">int</td>
+<td style="text-align:left">size()</td>
+<td style="text-align:left">栈中的元素数量</td>
+</tr>
+</tbody>
+</table>
+<h3 id="背包">背包</h3>
+<blockquote>
+<p>背包是一种不支持从中删除元素的集合数据类型<br>
+背包的目的: 帮助用例收集元素并迭代遍历所有收集到的元素<br>
+代送的顺序不确定且与用例无关</p>
+</blockquote>
+<p>背包就像是一个小兜子,每次添加一个弹珠.</p>
+<p><img src="/algorithm-learn/gifs/bag-add.gif" alt="向背包里添加弹珠"></p>
+<div class="note">元素的处理顺序不重要</div>
+<h3 id="队列">队列</h3>
+<blockquote>
+<p>队列 一种基于先进先出策略的集合类型</p>
+</blockquote>
+<p>按照输入的顺序进行输出</p>
+<dl>
+<dt>例子</dt>
+<dd>入队出队的操作就和现实生活中的排队是一样的.<br>
+在计算机中对于任务的执行的等待任务等都有先进先出策略的身影</dd>
+</dl>
+<p><img src="/algorithm-learn/gifs/queue-enqueue.gif" alt="入队操作"></p>
+<p><img src="/algorithm-learn/gifs/queue-dequeue.gif" alt="出队操作"></p>
+<h3 id="栈">栈</h3>
+<blockquote>
+<p>下压栈(或简称栈) 是一种基于后进后出策略的集合类型.</p>
+</blockquote>
+<dl>
+<dt>比如</dt>
+<dd>就像下面的gif图片一样.每次新成员都在老成员的上面.<br>
+就像弹夹一样最后压入的子弹🚄总会最先打出去.</dd>
+</dl>
+<p><img src="/algorithm-learn/gifs/stack-push.gif" alt="stack压入新成员"></p>
+<p><img src="/algorithm-learn/gifs/stack-pop.gif" alt="stack弹出新成员"></p>
+<h3 id="实现">实现</h3>
+<h5 id="栈-v2">栈</h5>
+<dl>
+<dt>push</dt>
+<dd>当压入元素到栈的时候,先保存老的节点,然后再把新的next 指向老节点上</dd>
+<dt>pop</dt>
+<dd>当弹出一个元素的时候,把栈顶指向栈顶的前一个元素.</dd>
+</dl>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.first =<span class="literal">null</span>; <span class="comment">//栈顶</span></span><br><span class="line">    <span class="keyword">this</span>.N = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//入栈</span></span><br><span class="line">  push(item) &#123;</span><br><span class="line">      <span class="keyword">const</span> oldNode =<span class="keyword">this</span>.first;</span><br><span class="line">      <span class="keyword">this</span>.first = <span class="keyword">new</span> LinkNode(item, <span class="literal">null</span>)</span><br><span class="line">      <span class="keyword">this</span>.first.next=oldNode ;</span><br><span class="line">    <span class="keyword">this</span>.N++;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  isEmpty() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.N === <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pop() &#123;</span><br><span class="line">    <span class="keyword">const</span> node = <span class="keyword">this</span>.first;</span><br><span class="line">    <span class="keyword">this</span>.first = <span class="keyword">this</span>.first.next;</span><br><span class="line">    <span class="keyword">this</span>.N--;</span><br><span class="line">    <span class="keyword">return</span> node.item;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.first;</span><br><span class="line">    <span class="keyword">let</span> str = <span class="string">""</span></span><br><span class="line">    <span class="keyword">while</span> (node !== <span class="literal">null</span>) &#123;</span><br><span class="line">      str += node.item</span><br><span class="line">      node = node.next;</span><br><span class="line">      <span class="keyword">if</span> (node) &#123; str += <span class="string">" - "</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(str)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  [<span class="built_in">Symbol</span>.iterator]() &#123;</span><br><span class="line">    <span class="keyword">var</span> iterator = &#123; <span class="attr">next</span>: next &#125;;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.first;</span><br><span class="line">    <span class="keyword">let</span> result = &#123;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (node) &#123;</span><br><span class="line">        result = &#123; <span class="attr">done</span>: <span class="literal">false</span>, <span class="attr">value</span>: node.item &#125;</span><br><span class="line">        node = node.next;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        result = &#123; <span class="attr">done</span>: <span class="literal">true</span> &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> iterator;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> stack = <span class="keyword">new</span> Stack();</span><br><span class="line">stack.push(<span class="string">'a'</span>);</span><br><span class="line">stack.push(<span class="string">'b'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> node <span class="keyword">of</span> stack) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(node)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// console.log(stack.pop())</span></span><br><span class="line">stack.toString()</span><br><span class="line"><span class="built_in">console</span>.log()</span><br></pre></td></tr></table></figure>
+<h3 id="背包-v2">背包</h3>
+<p>背包和栈的实现基本完全相同,不过把pop方法删除,把push改名add</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bag</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.first =<span class="literal">null</span>; </span><br><span class="line">    <span class="keyword">this</span>.N = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  add(item) &#123;</span><br><span class="line">      <span class="keyword">const</span> oldNode =<span class="keyword">this</span>.first;</span><br><span class="line">      <span class="keyword">this</span>.first = <span class="keyword">new</span> LinkNode(item, <span class="literal">null</span>)</span><br><span class="line">      <span class="keyword">this</span>.first.next=oldNode ;</span><br><span class="line">    <span class="keyword">this</span>.N++;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  isEmpty() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.N === <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pop() &#123;</span><br><span class="line">    <span class="keyword">const</span> node = <span class="keyword">this</span>.first;</span><br><span class="line">    <span class="keyword">this</span>.first = <span class="keyword">this</span>.first.next;</span><br><span class="line">    <span class="keyword">this</span>.N--;</span><br><span class="line">    <span class="keyword">return</span> node.item;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.first;</span><br><span class="line">    <span class="keyword">let</span> str = <span class="string">""</span></span><br><span class="line">    <span class="keyword">while</span> (node !== <span class="literal">null</span>) &#123;</span><br><span class="line">      str += node.item</span><br><span class="line">      node = node.next;</span><br><span class="line">      <span class="keyword">if</span> (node) &#123; str += <span class="string">" - "</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(str)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  [<span class="built_in">Symbol</span>.iterator]() &#123;</span><br><span class="line">    <span class="keyword">var</span> iterator = &#123; <span class="attr">next</span>: next &#125;;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.first;</span><br><span class="line">    <span class="keyword">let</span> result = &#123;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (node) &#123;</span><br><span class="line">        result = &#123; <span class="attr">done</span>: <span class="literal">false</span>, <span class="attr">value</span>: node.item &#125;</span><br><span class="line">        node = node.next;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        result = &#123; <span class="attr">done</span>: <span class="literal">true</span> &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> iterator;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> bag = <span class="keyword">new</span> Bag();</span><br><span class="line">bag.add(<span class="string">'a'</span>);</span><br><span class="line">bag.add(<span class="string">'b'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> node <span class="keyword">of</span> bag) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(node)</span><br><span class="line">&#125;</span><br><span class="line">bag.toString()</span><br><span class="line"><span class="built_in">console</span>.log()</span><br></pre></td></tr></table></figure>
+<h3 id="队列-v2">队列</h3>
+<dl>
+<dt>enqueue</dt>
+<dd>在把一个元素入队的时候,和栈一样保存之前的节点,与栈不同的是,栈是新的下一个节点是老的<br>
+而队列是老的节点的下一个是新的</dd>
+<dt>dequeue</dt>
+<dd>出队操作就简单了,直接把队头的节点出队,把队头向后移动就可以,需要注意的是检查一下如果队为空的时候<br>
+需要把队尾也指为空</dd>
+</dl>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.first = <span class="literal">null</span>; <span class="comment">// 队头</span></span><br><span class="line">    <span class="keyword">this</span>.last = <span class="literal">null</span>; <span class="comment">// 队尾</span></span><br><span class="line">    <span class="keyword">this</span>.N = <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//入队</span></span><br><span class="line">  enqueue(item) &#123;</span><br><span class="line">    <span class="keyword">let</span> oldNode = <span class="keyword">this</span>.last;</span><br><span class="line">    <span class="keyword">this</span>.last = <span class="keyword">new</span> LinkNode(item,<span class="literal">null</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.isEmpty())<span class="keyword">this</span>.first = <span class="keyword">this</span>.last;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">      oldNode.next = <span class="keyword">this</span>.last;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.N++;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  isEmpty() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.N === <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 出队</span></span><br><span class="line">  dequeue() &#123;</span><br><span class="line">    <span class="keyword">const</span> node = <span class="keyword">this</span>.first;</span><br><span class="line">    <span class="keyword">this</span>.first = <span class="keyword">this</span>.first.next;</span><br><span class="line">    <span class="keyword">this</span>.N--;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.isEmpty())<span class="keyword">this</span>.last=<span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> node.item;</span><br><span class="line">   </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.first;</span><br><span class="line">    <span class="keyword">let</span> str = <span class="string">""</span></span><br><span class="line">    <span class="keyword">while</span> (node !== <span class="literal">null</span>) &#123;</span><br><span class="line">      str += node.item</span><br><span class="line">      node = node.next;</span><br><span class="line">      <span class="keyword">if</span> (node) &#123; str += <span class="string">" - "</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(str)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  [<span class="built_in">Symbol</span>.iterator]() &#123;</span><br><span class="line">    <span class="keyword">var</span> iterator = &#123; <span class="attr">next</span>: next &#125;;</span><br><span class="line">    <span class="keyword">let</span> node = <span class="keyword">this</span>.first;</span><br><span class="line">    <span class="keyword">let</span> result = &#123;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (node) &#123;</span><br><span class="line">        result = &#123; <span class="attr">done</span>: <span class="literal">false</span>, <span class="attr">value</span>: node.item &#125;</span><br><span class="line">        node = node.next;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        result = &#123; <span class="attr">done</span>: <span class="literal">true</span> &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> iterator;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> queue = <span class="keyword">new</span> Queue();</span><br><span class="line">queue.enqueue(<span class="string">'a'</span>);</span><br><span class="line">queue.enqueue(<span class="string">'b'</span>);</span><br><span class="line">queue.toString()</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> node <span class="keyword">of</span> queue) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(node)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log()</span><br></pre></td></tr></table></figure>
+</div>
+
+
+
+<div id="footer-paginator">
+  
+    <div class="prev">
+      <a href="/algorithm-learn//空间复杂度" ><span>上一篇: </span> 空间复杂度 </a>
+    </div>
+  
+  
+  
+    <div class="next">
+      <a href="/algorithm-learn//union-find算法" ><span>下一篇: </span> union-find算法 </a>
+    </div>
+  
+</div>
+
+
+
+  <div class="book-comments">
+    
+
+
+  </div>
+
+
+<script src="/algorithm-learn/js/book-post.js"></script>
+        </div>
+      </div>
+
+      <div class="column col-2 hide-lg">
+        <div class="book-toc">
+  <div class="book-tocbot">
+  </div>
+  <div class="book-tocbot-menu">
+    <!-- <a class="book-toc-expand" onclick="expand_toc()">Expand all</a> -->
+    <a onclick="go_top()">Back to top</a>
+    <a onclick="go_bottom()">Go to bottom</a>
+  </div>
+</div>
+
+<script>
+tocbot.init({
+  tocSelector: '.book-tocbot',
+  contentSelector: '.book-post',
+  headingSelector: 'h1, h2, h3, h4, h5',
+  collapseDepth: 2,
+  orderedList: false,
+  scrollSmooth: false,
+});
+
+function expand_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 6,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "collapse_toc()");
+  b.innerHTML = "Collapse all"
+}
+
+function collapse_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 2,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "expand_toc()");
+  b.innerHTML = "Expand all"
+}
+
+function go_top() {
+  window.scrollTo(0, 0);
+}
+
+function go_bottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+</script>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/algorithm-learn/favicon.ico">
+    
+
+    <title>
+        
+          初级排序算法 - 苏鑫的算法笔记
+        
+    </title>
+
+    <!-- Spectre.css framework (v0.5.8) -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <!-- Noto Sans SC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+    <!-- Noto Sans -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+    <!-- theme css & js -->
+    <link rel="stylesheet" href="/algorithm-learn/css/spectre_custom.css">
+    <link rel="stylesheet" href="/algorithm-learn/css/book.css">
+    <script src="/algorithm-learn/js/book.js"></script>
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+</head>
+
+<body>
+
+<div class="container">
+  <div class="book-container">
+    <div class="columns">
+      <div class="column col-2 hide-lg">
+        <div class="book-sidebar">
+  <h4 class="site-meta">
+    <a href="/algorithm-learn/">苏鑫的算法笔记</a>
+  </h4>
+  <div class="sidebar-content">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script src="/algorithm-learn/js/book-sidebar.js"></script>
+      </div>
+
+      <div class="column col-8 col-lg-12">
+        <div class="book-content">
+          
+<div class="book-navbar">
+  <header class="navbar">
+  <section class="navbar-section">
+    <img class="navbar-icon" src="/algorithm-learn/favicon.ico">
+  </section>
+  <section class="navbar-center">
+    苏鑫的算法笔记
+  </section>
+  <section class="navbar-section">
+    <label class="accordion-header c-hand" for="accordion-sidebar">
+      <i class="icon icon-menu"></i>
+    </label>
+  </section>
+</header>
+
+<div class="accordion">
+  <input type="checkbox" id="accordion-sidebar" name="accordion-checkbox" hidden>
+  <div class="accordion-body">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+</div>
+
+<div class="book-post">
+    <div class="book-title">
+    <header>
+      <h1>初级排序算法</h1>
+      <div class="metadata">
+        <span> 创建时间:2019-09-19</span>
+        <span> 修改时间:2019-09-19</span>
+      </div>
+    <header>
+
+</div>
+  <p>初级排序算法很简单,也很好理解,后面会有写算法基于简单的算法进行的改进.比如希尔基于插入.</p>
+<p>和书中一样,用 js 写一个类,然后写作为比较的 less 方法,和交换数组元素的 exch 方法.</p>
+<dl>
+<dt>验证:</dt>
+<dd>测试编写一个测试方法 isSorted 判断排序后的数组是否有序.</dd>
+<dt>运行时间:</dt>
+<dd>评估算法的性能.</dd>
+<dt>额外的内存使用</dt>
+<dd>额外的内存开销和运行时间同等重要.</dd>
+<dd>除了函数调用所需的栈和固定数目的实例变量之外,无需额外内存的叫做 <strong>原地排序算法</strong>.</dd>
+<dd>需要额外空间来存储另一份的数据副本的其他排序算法.</dd>
+<dt>成本模型:</dt>
+<dd>对于交换元素的算法计算比较和交换的数量、对于不交换元素的算法几算法访问数组的次数.</dd>
+</dl>
+<h2 id="选择排序">选择排序</h2>
+<dl>
+<dt>思想:</dt>
+<dd>选择排序的思想很简单.</dd>
+</dl>
+<ul>
+<li>建立两个标示为一个代表需要交换的位置</li>
+<li>一个代表当前数组子集的最小值</li>
+<li>数组子集范围是当前需要交换位置到数组结束</li>
+</ul>
+<p>每次在数组的子集中找最小的和当前的交换,如果数组中最小的是自己,就自己和自己交换,然后向后移动需要交换的位置缩小子集,当移动到最后一个位置的时候数组就有序了.</p>
+<p>这种方法叫做 <strong>选择排序</strong> 的原因是因为它不断地选择剩余元素中的最小值</p>
+<dl>
+<dt>特点:</dt>
+<dd><strong>运行时间和输入无关.</strong> 为了找出最小元素需要遍历一遍数组,输入有序无序都不影响这个操作,在一个有序中这个特点反而是个缺点</dd>
+<dd><strong>数据移动最少</strong> 更多的操作是数据遍历</dd>
+</dl>
+<p>时间复杂度: N<sup>2</sup><br>
+对于长度为 N 的数组. 需要大约 N<sup>2</sup>/2 次比较和 N 次交换.<br>
+也就是 ~ N<sup>2</sup></p>
+<dl>
+<dt>空间复杂度: 1</dt>
+<dd>这就是一个典型的原地排序算法没有用多余的数组空间</dd>
+</dl>
+<p><strong>实现</strong></p>
+<figure class="highlight js"><figcaption><span>selection sort</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectionSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> N = arr.length</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">    <span class="keyword">let</span> min = i;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j = i+<span class="number">1</span>;j&lt;N;j++)&#123;</span><br><span class="line">      <span class="keyword">if</span>(less(arr[j],arr[min]))&#123;</span><br><span class="line">        min = j</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    exch(arr,i,min)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="插入排序">插入排序</h2>
+<p>当时我在研究这俩算法的时候差点买一扑克牌,这俩排序太像捋牌的过程.</p>
+<dl>
+<dt>思想:</dt>
+<dd>一张一张的过牌,将每一张牌插入到已经有序牌中的适当位置.</dd>
+<dd>一个标示位标示当前的这张牌</dd>
+<dd>一个标示位标示适当的位置</dd>
+<dd>一次循环就是一张一张的过牌,内循环就是把当前这张牌插入合适的位置.<br>
+实现中,为了要给插入的元素腾空间,我们要把其余的元素在插入之前右移.</dd>
+<dt>特点:</dt>
+<dd>和选择排序不同,插入排序所需的时间取决与输入元素的初始循序.对于有序的数组进行排序将会比对随机循序的数组或者逆序的数组要快的多. <em>这句话也是后面希尔排序产生的原因</em></dd>
+</dl>
+<p>时间复杂度: N 和 N<sup>2</sup> 之间<br>
+因为算法和输入相关所以就有最好和最坏的情况,在元素不重复的情况下<br>
+最好情况下需要 <em>N-1</em> 和 0 次交换<br>
+最坏情况下需要 ~ <em>N</em><sup>2</sup>/2 次比较和 ~ <em>N</em><sup>2</sup>/2 次交换<br>
+平均情况下需要 ~ <em>N</em><sup>2</sup>/4 次比较和 ~ <em>N</em><sup>2</sup>/4 次交换</p>
+<p><strong>空间复杂度:</strong> 1</p>
+<p>插入排序的场景一般情况下是<strong>部分有序</strong>的数组</p>
+<dl>
+<dt>部分有序</dt>
+<dd>数组中每个元素距离它最终的位置都不远</dd>
+<dd>一个有序的大数组接一个有序的小数组</dd>
+<dd>数组中只有几个元素的位置不正确</dd>
+</dl>
+<p>插入排序对这样的数组很有效,事实上,当倒置的数量很少时,插入排序很可能比贲张的任何其他算法都快</p>
+<p><strong>实现</strong></p>
+<figure class="highlight js"><figcaption><span>insertion sort</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> N = arr.length;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">    <span class="comment">// 内循环移动并交换大于arr[i]的元素</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j = i;j&gt;<span class="number">0</span> &amp;&amp; less(arr[j],arr[j<span class="number">-1</span>]);j--)&#123;</span><br><span class="line">      exch(arr,j,j<span class="number">-1</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="string">"插入排序"</span>,insertionSort)</span><br></pre></td></tr></table></figure>
+<h2 id="希尔排序">希尔排序</h2>
+<p>希尔排序是插入排序的一种改进,插入排序在面对大规模乱序的数组的时候很慢,原因在于它只是交换相邻的元素,因此元素只能一点点的从数组中移动.<br>
+希尔排序的主要思想是构建<strong>部分有序</strong>数组,把数组变成插入排序想要的那种</p>
+<p>思想:<br>
+初始化一个 h , h 代表一个<strong>递增序列</strong> 1 2 3 4 5 或者 1 3 5 6 12 等<br>
+实现希尔排序是对于每个 h ,任意间隔都是有序的.<br>
+h 有序数组. 一个 h 有序数组就是 h 个相互独立的有序数组编织在一起组成的一个数组.<br>
+用插入排序将 h 个数组独立的排序,这样就构建了多个部分有序数组而且数组很短</p>
+<p>时间复杂度:<br>
+这个时间复杂度很迷茫,只是知道它突破了 平方级别的限制<br>
+书中写的复杂度是 NlogN? N<sup>6/5</sup>? 没看懂是啥意思<br>
+这个复杂度应该是取决于序列 h</p>
+<p><strong>实现</strong></p>
+<figure class="highlight js"><figcaption><span>shell sort</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">shellSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> h = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">let</span> N = arr.length;</span><br><span class="line">  <span class="keyword">while</span>(h&lt;N/<span class="number">3</span>)h=<span class="number">3</span>*h+<span class="number">1</span>; <span class="comment">// 1 4 13 40 121 ...</span></span><br><span class="line">  <span class="keyword">while</span>(h &gt;= <span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = h;i&lt;N;i++)&#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> j = i;j&gt;=h &amp;&amp; less(arr[j],arr[j-h]);j-=h)&#123;</span><br><span class="line">        exch(arr,j,j-h)</span><br><span class="line">      &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    h = <span class="built_in">parseInt</span>(h/<span class="number">3</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="string">"希尔排序"</span>,shellSort)</span><br></pre></td></tr></table></figure>
+<h1 id="总结">总结</h1>
+<p>这几种算法写了 N 遍我也没记住过应该怎么写,都是按照书里抄来的.</p>
+
+</div>
+
+
+
+<div id="footer-paginator">
+  
+    <div class="prev">
+      <a href="/algorithm-learn//排序" ><span>上一篇: </span> 排序 </a>
+    </div>
+  
+  
+  
+    <div class="next">
+      <a href="/algorithm-learn//归并排序" ><span>下一篇: </span> 归并排序 </a>
+    </div>
+  
+</div>
+
+
+
+  <div class="book-comments">
+    
+
+
+  </div>
+
+
+<script src="/algorithm-learn/js/book-post.js"></script>
+        </div>
+      </div>
+
+      <div class="column col-2 hide-lg">
+        <div class="book-toc">
+  <div class="book-tocbot">
+  </div>
+  <div class="book-tocbot-menu">
+    <!-- <a class="book-toc-expand" onclick="expand_toc()">Expand all</a> -->
+    <a onclick="go_top()">Back to top</a>
+    <a onclick="go_bottom()">Go to bottom</a>
+  </div>
+</div>
+
+<script>
+tocbot.init({
+  tocSelector: '.book-tocbot',
+  contentSelector: '.book-post',
+  headingSelector: 'h1, h2, h3, h4, h5',
+  collapseDepth: 2,
+  orderedList: false,
+  scrollSmooth: false,
+});
+
+function expand_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 6,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "collapse_toc()");
+  b.innerHTML = "Collapse all"
+}
+
+function collapse_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 2,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "expand_toc()");
+  b.innerHTML = "Expand all"
+}
+
+function go_top() {
+  window.scrollTo(0, 0);
+}
+
+function go_bottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+</script>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

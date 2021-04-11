@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/algorithm-learn/favicon.ico">
+    
+
+    <title>
+        
+          union-find算法 - 苏鑫的算法笔记
+        
+    </title>
+
+    <!-- Spectre.css framework (v0.5.8) -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- Noto Sans TC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC" rel="stylesheet">
+    <!-- Noto Sans SC -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC" rel="stylesheet">
+    <!-- Noto Sans -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+    <!-- theme css & js -->
+    <link rel="stylesheet" href="/algorithm-learn/css/spectre_custom.css">
+    <link rel="stylesheet" href="/algorithm-learn/css/book.css">
+    <script src="/algorithm-learn/js/book.js"></script>
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+</head>
+
+<body>
+
+<div class="container">
+  <div class="book-container">
+    <div class="columns">
+      <div class="column col-2 hide-lg">
+        <div class="book-sidebar">
+  <h4 class="site-meta">
+    <a href="/algorithm-learn/">苏鑫的算法笔记</a>
+  </h4>
+  <div class="sidebar-content">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+
+<script src="/algorithm-learn/js/book-sidebar.js"></script>
+      </div>
+
+      <div class="column col-8 col-lg-12">
+        <div class="book-content">
+          
+<div class="book-navbar">
+  <header class="navbar">
+  <section class="navbar-section">
+    <img class="navbar-icon" src="/algorithm-learn/favicon.ico">
+  </section>
+  <section class="navbar-center">
+    苏鑫的算法笔记
+  </section>
+  <section class="navbar-section">
+    <label class="accordion-header c-hand" for="accordion-sidebar">
+      <i class="icon icon-menu"></i>
+    </label>
+  </section>
+</header>
+
+<div class="accordion">
+  <input type="checkbox" id="accordion-sidebar" name="accordion-checkbox" hidden>
+  <div class="accordion-body">
+    <ul>
+<li><a href="/algorithm-learn/%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="/algorithm-learn/%E5%9F%BA%E7%A1%80">基础</a>
+<ul>
+<li><a href="/algorithm-learn/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">时间复杂度</a></li>
+<li><a href="/algorithm-learn/%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">空间复杂度</a></li>
+<li><a href="/algorithm-learn/%E6%A0%88%E9%98%9F%E5%88%97%E8%83%8C%E5%8C%85">栈、队列、背包</a></li>
+<li><a href="/algorithm-learn/union-find%E7%AE%97%E6%B3%95">union-find算法</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%8E%92%E5%BA%8F">排序</a>
+<ul>
+<li><a href="/algorithm-learn/%E5%88%9D%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95">初级排序算法</a></li>
+<li><a href="/algorithm-learn/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
+<li><a href="/algorithm-learn/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F">快速排序</a></li>
+<li><a href="/algorithm-learn/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97">优先队列和堆排序</a></li>
+</ul>
+</li>
+<li><a href="/algorithm-learn/%E6%9F%A5%E6%89%BE">查找</a></li>
+</ul>
+
+  </div>
+</div>
+</div>
+
+<div class="book-post">
+    <div class="book-title">
+    <header>
+      <h1>union-find算法</h1>
+      <div class="metadata">
+        <span> 创建时间:2019-09-17</span>
+        <span> 修改时间:2019-09-17</span>
+      </div>
+    <header>
+
+</div>
+  <p>终于到了第一章的最后一部分,在第一章的最后一部分,探讨一个算法union-finde 这个算法在图的部分会继续使用</p>
+<p>算法一书的强调对于算法的理念</p>
+<blockquote>
+<p>优秀的算法因为能够<strong>解决实际问题</strong>而变得重要<br>
+<strong>高效</strong>算法也可以很简单<br>
+理解某个实现的性能特点是一项令人满足的挑战<br>
+在解决同一个问题的多种算法之间进行选择时,科学方法是一种重要的工具<br>
+迭代式更改能够让算法的效率越来越高</p>
+</blockquote>
+<h3 id="动态连通性">动态连通性</h3>
+<dl>
+<dt>问题</dt>
+<dd>输入是一列整数对,其中每个整数都表示一个某种类型的对象,一对整数 p q 可以被理解为<code>p 和 q 是相连的</code></dd>
+<dt>假设相连是一种对等关系</dt>
+<dd>自反性: p 和 q 是相连的<br>
+对称性: 如果 p 和 q 是相连的, 那么 q 和 p 也是相连的<br>
+传递性: 如果 p 和 q 是相连的,那么 p 和 r 也是相连的</dd>
+</dl>
+<p>对等关系能够将对象分为多个等价类.<br>
+当且进党两个对象相连时它们才属于同一个等价类</p>
+<dl>
+<dt>术语</dt>
+<dd>将对象称为 <strong>触点</strong><br>
+将整数对称为 <strong>连接</strong><br>
+将等价类称为 <strong>连通分量</strong> 或者简称<strong>分量</strong></dd>
+</dl>
+<h3 id="api">api</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">UF</th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"></td>
+<td style="text-align:left">UF(N)</td>
+<td style="text-align:left">以整数标示(0到N)</td>
+</tr>
+<tr>
+<td style="text-align:right">void</td>
+<td style="text-align:left">union(p,q)</td>
+<td style="text-align:left">在 p 和 q 之间添加一个链接</td>
+</tr>
+<tr>
+<td style="text-align:right">int</td>
+<td style="text-align:left">find(p)</td>
+<td style="text-align:left">p 所在的分量的标识</td>
+</tr>
+<tr>
+<td style="text-align:right">boolean</td>
+<td style="text-align:left">connected(p,q)</td>
+<td style="text-align:left">p q 是否存在于同一个分量</td>
+</tr>
+<tr>
+<td style="text-align:right">int</td>
+<td style="text-align:left">count()</td>
+<td style="text-align:left">连通分量的数量</td>
+</tr>
+</tbody>
+</table>
+<h3 id="分析问题">分析问题</h3>
+<dl>
+<dt>为了解决动态连通性问题所有的实现都应该</dt>
+<dd>定义一种数据结构表示已知的链接<br>
+基于此数据结构实现高效的 union() 、find() 、 connected() 和 count()方法</dd>
+</dl>
+<blockquote>
+<p>数据结构的性质将直接影响到算法的效率</p>
+</blockquote>
+<dl>
+<dt>数据结构</dt>
+<dd>所以用一个以<strong>触点为索引</strong>的数组id[]作为基本的数据结构来表示所有分量<br>
+将使用分量中的某个触点的名称作为分量的标识符,因此每个分量都是由它的触点之一的表示<br>
+开始的时候,由N个分量,每个触点都构成了一个含有它自己的分量</dd>
+</dl>
+<div class="note">
+这段话的意思就是说有个id[] 的数组 id[0] 就代表 0 的触点
+<br>
+id[0] 的内容就是 0 触点当前所在的分量
+<br>
+连通分量本质上是一个构建树的过程
+</div>
+<blockquote></blockquote>
+<h3 id="实现">实现</h3>
+<p>对于这个api我们由三种实现</p>
+<p>所有的实现都存在一个基类UF这样能少写好多代码</p>
+<figure class="highlight js"><figcaption><span>UF</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UF</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(N)&#123;</span><br><span class="line">    <span class="keyword">this</span>.count = N;</span><br><span class="line">     <span class="comment">/** 生成 N 长度的数组</span></span><br><span class="line"><span class="comment">      * 数组的索引代表对应的触点</span></span><br><span class="line"><span class="comment">      * 数组索引对应存储的值代表所在分量</span></span><br><span class="line"><span class="comment">      * id[0] 表示 0 触点所在的 分量</span></span><br><span class="line"><span class="comment">      *  **/</span></span><br><span class="line">    <span class="keyword">this</span>.id = <span class="built_in">Array</span>(N)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span>;i&lt;N;i++)<span class="keyword">this</span>.id[i]=i;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  find(p)&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"子类需要写"</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  union(p,q)&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"子类需要写"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  connected(p,q)&#123;</span><br><span class="line">    <span class="keyword">return</span> find(p)==find(q)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="quick-find">quick-find</h4>
+<dl>
+<dt>思想:</dt>
+<dd>保证当且仅当 id[p] 等于 id[q] 是连通的.<br>
+也就是说 同一个连通分量里的所有触点的<strong>id[触点]</strong> 都是相同的<br>
+当查找他是属于那个分量的时候直接可以通过id[触点]就直接找到了它的根<br>
+在面对union操作的时候就需要遍历数组把属于另一个分量的触点全部合并</dd>
+</dl>
+<figure class="highlight js"><figcaption><span>QuickFindUF</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuickFindUF</span> <span class="keyword">extends</span> <span class="title">UF</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(...args)&#123;</span><br><span class="line">    <span class="keyword">super</span>(args)</span><br><span class="line">  &#125;</span><br><span class="line">  find(p)&#123;</span><br><span class="line">    <span class="comment">// 直接返回 p 所在的分量</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.id[p];</span><br><span class="line">  &#125;</span><br><span class="line">  union(p,q)&#123;</span><br><span class="line">    <span class="comment">//获取p 和q 所在的连通分量</span></span><br><span class="line">    <span class="keyword">const</span> pId = <span class="keyword">this</span>.find(p)</span><br><span class="line">    <span class="keyword">const</span> qId = <span class="keyword">this</span>.find(q)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果p和q 在一个分量不做操作</span></span><br><span class="line">    <span class="keyword">if</span>(pId === qId)<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将p的分量命名为q 的分量</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> index = <span class="number">0</span>; index &lt; <span class="keyword">this</span>.id.length; index++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.id[index]===pId)<span class="keyword">this</span>.id[index]=qId;      </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.count--;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//test </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testQuickFindUF</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> N = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">const</span> paramStr = <span class="string">`4 3 3 8 6 5 9 4 2 1 8 9 5 0 7 2 6 1 1 0 6 7`</span>;</span><br><span class="line">  <span class="keyword">const</span> param = paramStr.split(<span class="string">" "</span>).map(<span class="function"><span class="params">item</span>=&gt;</span>&#123;<span class="keyword">return</span> <span class="built_in">parseInt</span>(item)&#125;);</span><br><span class="line">  <span class="keyword">const</span> uf = <span class="keyword">new</span> QuickFindUF(N);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;param.length<span class="number">-1</span>;i+=<span class="number">2</span>)&#123;</span><br><span class="line">    <span class="keyword">const</span> p = param[i];</span><br><span class="line">    <span class="keyword">const</span> q = param[i+<span class="number">1</span>];</span><br><span class="line">    uf.union(p,q)</span><br><span class="line">    <span class="built_in">console</span>.log(p + <span class="string">" "</span> +q+<span class="string">" "</span>+uf.id);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(uf.count+<span class="string">" components"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/algorithm-learn/images/quick-find-guiji.png" alt="quick-find轨迹"></p>
+<dl>
+<dt>分析：</dt>
+<dd>这种算法 find 的速度很快，只访问了一次数组<br>
+但是在union 操作的时候会遍历一遍数组，根据成本模型，我们看这个循环<br>
+循环中 if 中的条件，访问了一次数组，后面的赋值语句访问了一边数组<br>
+如果 if 中的条件都不成立也就是最好的情况下我们需要访问 2 + N + 1 次数组<br>
+如果 if 中的条件成立了就需要访问 2 + 2N  - 1 次数组了</dd>
+</dl>
+<div class="note">
+  最后加的一是触点本身的时候，减的一也是
+</div>
+<h4 id="quick-union">quick-union</h4>
+<dl>
+<dt>思想:</dt>
+<dd>添加一种 <strong>连接</strong> 关系,每个触点都连接它上一个触点或者他本身<br>
+<code>id[0] = 0</code> 的意思就是 触点 0 连接自己<br>
+<code>id[0] = 1</code> 的意思就是 触点 0 连接 1 这个触点<br>
+当实现 find 方法的时候，需要访问当前 触点 的上级触点，这样逐级向上查询，最后到达所在的根节点<br>
+需要用 union 来维护这种关系，在union中我们找到两个触点的跟触点，然后把一个根触点放到另一个根触点分量中<br>
+<code>id[p] = q</code> 把 触点 p 的根触点 赋值为 q</dd>
+</dl>
+<figure class="highlight js"><figcaption><span>quick union</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuickUnionUF</span> <span class="keyword">extends</span> <span class="title">UF</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(...args)&#123;</span><br><span class="line">    <span class="keyword">super</span>(args)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  find(p)&#123;</span><br><span class="line">    <span class="comment">// 寻找触点的根节点</span></span><br><span class="line">    <span class="keyword">while</span>(p!==<span class="keyword">this</span>.id[p])p=<span class="keyword">this</span>.id[p];</span><br><span class="line">    <span class="keyword">return</span> p</span><br><span class="line">  &#125;</span><br><span class="line">  union(p,q)&#123;</span><br><span class="line">    <span class="comment">//获取p 和q 所在的连通分量</span></span><br><span class="line">    <span class="keyword">const</span> pRoot = <span class="keyword">this</span>.find(p)</span><br><span class="line">    <span class="keyword">const</span> qRoot = <span class="keyword">this</span>.find(q)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果p和q 在一个分量不做操作</span></span><br><span class="line">    <span class="keyword">if</span>(pRoot === qRoot)<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将 p 的根节点挂到 q 的分量上</span></span><br><span class="line">    <span class="keyword">this</span>.id[pRoot] = <span class="keyword">this</span>.id[qRoot]</span><br><span class="line">    <span class="keyword">this</span>.count--;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testQuickUnionUF</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> N = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">const</span> paramStr = <span class="string">`4 3 3 8 6 5 9 4 2 1 8 9 5 0 7 2 6 1 1 0 6 7`</span>;</span><br><span class="line">  <span class="keyword">const</span> param = paramStr.split(<span class="string">" "</span>).map(<span class="function"><span class="params">item</span>=&gt;</span>&#123;<span class="keyword">return</span> <span class="built_in">parseInt</span>(item)&#125;);</span><br><span class="line">  <span class="keyword">const</span> uf = <span class="keyword">new</span> QuickUnionUF(N);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;param.length<span class="number">-1</span>;i+=<span class="number">2</span>)&#123;</span><br><span class="line">    <span class="keyword">const</span> p = param[i];</span><br><span class="line">    <span class="keyword">const</span> q = param[i+<span class="number">1</span>];</span><br><span class="line">    uf.union(p,q)</span><br><span class="line">    <span class="built_in">console</span>.log(p + <span class="string">" "</span> +q+<span class="string">" "</span>+uf.id);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(uf.count+<span class="string">" components"</span>)</span><br><span class="line">&#125;</span><br><span class="line">testQuickUnionUF();</span><br></pre></td></tr></table></figure>
+<dl>
+<dt>分析：</dt>
+<dd>quick-union 构造了一个森林,每个 <strong>分量</strong> 代表一个树<br>
+：相比与 quick-find 来说 quick-union 仿佛快了,因为 quick-union 对于 find 的操作,访问数组的次数取决于树的深度,当树的深度越浅的时候访问树的次数越少,树的深度的大小取决与输入,当输入的时候一直往一个触点上延伸触点,得到的就是一个链,换句话来说就是,每次都在大树上挂小树的,所以在最坏的情况下会访问次数能达到 平方级别</dd>
+<dt>思考:</dt>
+<dd>quick-union 的速度和树的深度有关,如果有一种方法可以减少树的深度,那么是不是就快了呢? 是的. 下面学习关于加权的quick-union</dd>
+</dl>
+<h4 id="quick-union-v2">quick-union</h4>
+<dl>
+<dt>思路:</dt>
+<dd>根据上文知道树的深度决定了 quick-union 的速度,所以可以添加一个数组 sz ,和 id 一样数组的索引代表这触点.<br>
+数组的内容代表当前触点所在树的深度.在 union 操作的时候,把权重大的树挂载到权重小的树上面,这样树的深度就会减少很多</dd>
+</dl>
+<figure class="highlight js"><figcaption><span>weight-quick-union</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WeightQuickUnionUF</span> <span class="keyword">extends</span> <span class="title">UF</span></span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(...args)&#123;</span><br><span class="line">    <span class="keyword">super</span>(args)</span><br><span class="line">    <span class="keyword">const</span> [N] = args;</span><br><span class="line">    <span class="keyword">this</span>.sz = <span class="built_in">Array</span>(N).fill(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.sz,args)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  find(p)&#123;</span><br><span class="line">    <span class="comment">// 寻找触点的根节点</span></span><br><span class="line">    <span class="keyword">while</span>(p!==<span class="keyword">this</span>.id[p])p=<span class="keyword">this</span>.id[p];</span><br><span class="line">    <span class="keyword">return</span> p</span><br><span class="line">  &#125;</span><br><span class="line">  union(p,q)&#123;</span><br><span class="line">    <span class="comment">//获取p 和q 所在的连通分量</span></span><br><span class="line">    <span class="keyword">const</span> pRoot = <span class="keyword">this</span>.find(p)</span><br><span class="line">    <span class="keyword">const</span> qRoot = <span class="keyword">this</span>.find(q)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果p和q 在一个分量不做操作</span></span><br><span class="line">    <span class="keyword">if</span>(pRoot === qRoot)<span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//按照权重去把小树挂在大树上</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.sz[pRoot]&lt;<span class="keyword">this</span>.sz[qRoot])&#123;</span><br><span class="line">      <span class="keyword">this</span>.id[pRoot] = <span class="keyword">this</span>.id[qRoot]</span><br><span class="line">      <span class="comment">// 更新 q 根节点的权重</span></span><br><span class="line">      <span class="keyword">this</span>.sz[qRoot]+=<span class="keyword">this</span>.sz[pRoot]</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.id[qRoot] = <span class="keyword">this</span>.id[pRoot]</span><br><span class="line">      <span class="keyword">this</span>.sz[pRoot]+=<span class="keyword">this</span>.sz[qRoot] </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.count--;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">testWeightQuickUnionUF</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> N = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">const</span> paramStr = <span class="string">`4 3 3 8 6 5 9 4 2 1 8 9 5 0 7 2 6 1 1 0 6 7`</span>;</span><br><span class="line">  <span class="keyword">const</span> param = paramStr.split(<span class="string">" "</span>).map(<span class="function"><span class="params">item</span>=&gt;</span>&#123;<span class="keyword">return</span> <span class="built_in">parseInt</span>(item)&#125;);</span><br><span class="line">  <span class="keyword">const</span> uf = <span class="keyword">new</span> WeightQuickUnionUF(N);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>;i&lt;param.length<span class="number">-1</span>;i+=<span class="number">2</span>)&#123;</span><br><span class="line">    <span class="keyword">const</span> p = param[i];</span><br><span class="line">    <span class="keyword">const</span> q = param[i+<span class="number">1</span>];</span><br><span class="line">    uf.union(p,q)</span><br><span class="line">    <span class="built_in">console</span>.log(p + <span class="string">" "</span> +q+<span class="string">" "</span>+uf.id,uf.sz);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(uf.count+<span class="string">" components"</span>)</span><br><span class="line">&#125;</span><br><span class="line">testWeightQuickUnionUF()</span><br></pre></td></tr></table></figure>
+<dl>
+<dt>命题:</dt>
+<dd>对于 N 个触点,加权 quick-union 算法构造的森林中的任意节点的深度最多为 lgN</dd>
+<dt>推论:</dt>
+<dd>对于加权 quick-union 算法和 N 个触点,在最坏的情况下 find()、connected()、和union() 的成本的增长数量级为 logN</dd>
+<dt>分析:</dt>
+<dd>加权算法处理 N 个触点和 M 条连接时最多访问数组 cMlgN 次,其中 c 为常数.</dd>
+</dl>
+<h4 id="最优算法-路径压缩算法">最优算法-路径压缩算法</h4>
+<p>书中说到一种简单的路径压缩算法.属于最优算法的一种.</p>
+<dl>
+<dt>思路:</dt>
+<dd>理想情况下,我们希望每个节点都直接连接到它的根节点上,这样书的深度就最小,但是我们又不想想quick-find那样大量修改链接.</dd>
+<dd>接近这种理想状态的方式很简单,在检查节点的时候我们将它们直接连到根节点.</dd>
+<dd>要实现路径压缩算法,只需要为 find() 添加一个循环,将路径上遇到的所有节点都直接链接到根节点.</dd>
+<dd>这样我们就能得到一个几乎扁平化的树</dd>
+</dl>
+
+</div>
+
+
+
+<div id="footer-paginator">
+  
+    <div class="prev">
+      <a href="/algorithm-learn//栈队列背包" ><span>上一篇: </span> 栈、队列、背包 </a>
+    </div>
+  
+  
+  
+    <div class="next">
+      <a href="/algorithm-learn//排序" ><span>下一篇: </span> 排序 </a>
+    </div>
+  
+</div>
+
+
+
+  <div class="book-comments">
+    
+
+
+  </div>
+
+
+<script src="/algorithm-learn/js/book-post.js"></script>
+        </div>
+      </div>
+
+      <div class="column col-2 hide-lg">
+        <div class="book-toc">
+  <div class="book-tocbot">
+  </div>
+  <div class="book-tocbot-menu">
+    <!-- <a class="book-toc-expand" onclick="expand_toc()">Expand all</a> -->
+    <a onclick="go_top()">Back to top</a>
+    <a onclick="go_bottom()">Go to bottom</a>
+  </div>
+</div>
+
+<script>
+tocbot.init({
+  tocSelector: '.book-tocbot',
+  contentSelector: '.book-post',
+  headingSelector: 'h1, h2, h3, h4, h5',
+  collapseDepth: 2,
+  orderedList: false,
+  scrollSmooth: false,
+});
+
+function expand_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 6,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "collapse_toc()");
+  b.innerHTML = "Collapse all"
+}
+
+function collapse_toc(){
+  var b = document.querySelector(".book-toc-expand");
+  tocbot.init({
+    tocSelector: '.book-tocbot',
+    contentSelector: '.book-post',
+    headingSelector: 'h1, h2, h3, h4, h5',
+    collapseDepth: 2,
+    orderedList: false,
+    scrollSmooth: false,
+  });
+  b.setAttribute("onclick", "expand_toc()");
+  b.innerHTML = "Expand all"
+}
+
+function go_top() {
+  window.scrollTo(0, 0);
+}
+
+function go_bottom() {
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+</script>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
